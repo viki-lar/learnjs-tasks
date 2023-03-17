@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="clock">
+      <span class="hour"></span><span class="min"></span
+      ><span class="sec"></span>
+    </div>
+    <!-- клик по этой кнопке вызовет clockStart() -->
+    <input type="button" onclick="clockStart()" value="Старт" />
+
+    <!-- клик по этой кнопке вызовет clockStop() -->
+    <input type="button" onclick="clockStop()" value="Стоп" />
+  </body>
+
+  <script>
+    let timerId;
+
+    const timer = () => {
+      let date = new Date();
+      let clock = document.getElementById("clock");
+
+      document.body.prepend(clock);
+      let hours = date.getHours();
+      clock.children[0].innerHTML = hours + ":";
+
+      let minutes = date.getMinutes();
+
+      clock.children[1].innerHTML = minutes + ":";
+
+      let seconds = date.getSeconds();
+
+      clock.children[2].innerHTML = seconds;
+    };
+
+    function clockStart() {
+      if (!timerId) {
+        timerId = setInterval(timer, 1000);
+      }
+    }
+
+    function clockStop() {
+      clearInterval(timerId);
+      timerId = null;
+    }
+  </script>
+</html>
